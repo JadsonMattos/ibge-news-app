@@ -1,0 +1,12 @@
+#root {
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  background-color: aliceblue;
+}
+
+.filters {
+  display: flex;
+  background: rgba(255, 255, 255, 0.85);
+  border: 14px solid rgba(255, 255, 255, 0.85);
+}
