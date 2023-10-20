@@ -19,7 +19,7 @@ const NewsList = () => {
               <Card.Title>{item.titulo}</Card.Title>
               <Card.Text>{item.introducao}</Card.Text>
               <div className='button'>
-                <Card.Text>{daysAgo(item)} dias atrás</Card.Text>
+                <Card.Text>{daysAgo(item)}</Card.Text>
                 <button
                   onClick={() => window.open(item.link, '_blank')}
                 >

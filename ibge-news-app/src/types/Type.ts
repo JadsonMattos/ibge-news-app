@@ -4,7 +4,7 @@ export type NewsType = {
   titulo: string,
   introducao: string,
   data_publicacao: string,
-  imagens: Images,
+  imagens: string,
   link: string,
 }
 
@@ -17,7 +17,7 @@ export type NewsContextType = {
   news: NewsType[],
   loading: boolean,
   loadMore: () => void,
-  daysAgo: (date: NewsType) => number,
+  daysAgo: (date: NewsType) => string | number,
   addFavorites: (news: NewsType) => void,
   removeFavorites: (news: NewsType) => void,
   favorites: NewsType[],

@@ -2,48 +2,52 @@ import { useContext, useState } from 'react';
 import NewsContext from '../../context/NewsContext';
 
 const FilterByData = () => {
-  const [selectedDate, setSelectedDate] = useState('');
-  const [sortBy, setSortBy] = useState('asc');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
   const {news, updateNews} = useContext(NewsContext);
 
-  const filterAndSortNews = (date: string, sort: string) => {
-    let filtered = news.filter((item) => item.data_publicacao.includes(date));
-    if (sort === 'asc') {
-      filtered = filtered.sort((a, b) => +new Date(a.data_publicacao) - +new Date(b.data_publicacao));
-    } else {
-      filtered = filtered.sort((a, b) => +new Date(b.data_publicacao) - +new Date(a.data_publicacao));
-    }
+  const filterAndSortNews = (startDate: string, endDate: string) => {
+    const filtered = news.filter((item) => item.data_publicacao >= startDate && item.data_publicacao <= endDate);
     updateNews(filtered);
   };
 
-  const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const date = event.target.value;
-    setSelectedDate(date);
-    filterAndSortNews(date, sortBy);
-    const filtered = news.filter((item) => item.data_publicacao.includes(date));
-    updateNews(filtered);
+  const handleStartDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const startDate = event.target.value;
+    setStartDate(startDate);
   };
 
-  const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const sort = event.target.value;
-    setSortBy(sort);
-    filterAndSortNews(selectedDate, sort);
-  }
+  const handleEndDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const endDate = event.target.value;
+    setEndDate(endDate);
+  };
+
+  const handleSubmit = () => {
+    filterAndSortNews(startDate, endDate);
+  };
+
+  const handleReset = () => {
+    setStartDate('');
+    setEndDate('');
+  };
 
   return (
     <div className='dateFilter'>
-      <label htmlFor="dateFilter">Data:</label>
+      <label htmlFor="startDate">De:</label>
       <input
         type="date"
-        id="dateFilter"
-        value={selectedDate}
-        onChange={handleDateChange}
+        id="startDate"
+        value={startDate}
+        onChange={handleStartDateChange}
       />
-      <label htmlFor="sort">Ordenar:</label>
-      <select id="sort" value={sortBy} onChange={handleSortChange}>
-        <option value="asc">Notícias Recentes</option>
-        <option value="desc">Notícias Antigas</option>
-      </select>
+      <label htmlFor="endDate">Até:</label>
+      <input
+        type="date"
+        id="endDate"
+        value={endDate}
+        onChange={handleEndDateChange}
+      />
+      <button onClick={handleSubmit}>Filtrar</button>
+      <button onClick={handleReset}>Resetar</button>
     </div>
   );
 }

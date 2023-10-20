@@ -20,10 +20,10 @@ function App() {
         <FilterByData />
         <FilterByType />
         <FilterByTitle />
-        <button onClick={() => toggleShowNews(showNews)}>
-          {showNews ? 'Ver Favoritos' : 'Ver Notícias'}
-        </button>
       </div>
+      <button className="favorite-button" onClick={() => toggleShowNews(showNews)}>
+        {showNews ? 'Ver Favoritos' : 'Ver Notícias'}
+      </button>
       {showNews ? <NewsList /> : <Favorites />}
     </NewsProvider>
   )

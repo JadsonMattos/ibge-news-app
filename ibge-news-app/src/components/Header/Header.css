@@ -30,3 +30,17 @@
   max-width: 200px;
   margin-right: 1rem;
 }
+
+@media (max-width: 768px) {
+  .header {
+    padding: 0.5rem;
+  }
+
+  .header h1 {
+    font-size: 1.5rem;
+  }
+
+  .header img {
+    max-width: 50px;
+  }
+}

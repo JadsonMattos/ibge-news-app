@@ -9,4 +9,24 @@
   display: flex;
   background: rgba(255, 255, 255, 0.85);
   border: 14px solid rgba(255, 255, 255, 0.85);
+  margin: 50px 0 25px 0;
+  justify-content: space-around;
+}
+
+.favorite-button {
+  background-color: black;
+  color: white;
+  margin-bottom: 50px;
+}
+
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+    justify-content: center;
+    margin: 25px 0;
+  }
+
+  .favorite-button {
+    margin-bottom: 25px;
+  }
 }

@@ -19,6 +19,7 @@ const NewsProvider = ({ children }: NewsProviderProps) => {
     const getNews = async () => {
       try {
         const data = await fetchNews(page);
+        console.log(data);
         setNews(oldNews => [...oldNews, ...data.items]);
         setLoading(false);
       } catch (error) {
@@ -57,9 +58,9 @@ const NewsProvider = ({ children }: NewsProviderProps) => {
     const timeDifference = Math.abs(+current - +publication);
     const daysDifference = Math.floor(timeDifference / (1000 * 3600 * 24));
     if (daysDifference === 1) {
-      return 'publicado há 1 dia';
+      return 'publicado há 1 dia atrás';
     } else {
-      return `publicado há ${daysDifference} dias`;
+      return `publicado há ${daysDifference} dias atrás`;
     }
   }, []);
 

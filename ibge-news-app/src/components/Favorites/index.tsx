@@ -13,12 +13,18 @@ const Favorites = () => {
       <div className='card-news'>
         {favorites.map((item) => (
           <Card key={item.id}>
-            <Card.Img variant="top" src={item.imagens.image_intro} />
             <Card.Body>
               <Card.Title>{item.titulo}</Card.Title>
               <Card.Text>{item.introducao}</Card.Text>
-              <Card.Text>{daysAgo(item)} dias atrás</Card.Text>
-              <Card.Link href={item.link} target="_blank" rel="noreferrer">Leia mais</Card.Link>
+              <div className='button'>
+                <Card.Text>{daysAgo(item)}</Card.Text>
+                <button
+                  onClick={() => window.open(item.link, '_blank')}
+                >
+                  Leia a notícia aqui
+                </button>
+              </div>
+              <hr />
               <Card.Link onClick={() => isFavorite(item) && removeFavorites(item)}>
                 <img src={iconFavoriteRed} alt="Favorited" />
               </Card.Link>
